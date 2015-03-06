@@ -35,9 +35,11 @@ static NSString *authorizeIdentifier = @"com.threeti.NSObjectLimit-Method-Swizzl
     dispatch_once(&onceToken, ^{
         Class class = [self class];
         
+        //通过调用的方法名获取方法对象
         SEL originalSelector = @selector(init);
         SEL swizzledSelector = @selector(limit_init);
         
+        //通过方法对象获取方法指针
         Method originalMethod = class_getInstanceMethod(class, originalSelector);
         Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
         
